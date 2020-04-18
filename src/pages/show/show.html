@@ -1,0 +1,59 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title text-center text-uppercase>{{title}}</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="whoToShow()" color="primary" outline>
+        إعرض
+      </button>
+      <button ion-button clear [ngClass]="{'loop': animate}" (click)="doRefresh()" icon-only>
+        <ion-icon name="refresh"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown"
+    pullingText="إسحب للتحديث"
+    refreshingSpinner="bubbles">
+  </ion-refresher-content>
+  </ion-refresher>
+  <ion-searchbar placeholder="بحث بالإسم" (ionInput)="getItems($event)"></ion-searchbar>
+  <div padding>
+    <ion-segment [(ngModel)]="type">
+      <ion-segment-button value="pos">
+          Positive({{bldInput}}+)
+      </ion-segment-button>
+      <ion-segment-button value="neg">
+          Negative({{bldInput}}-)
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <table id="table" dir="rtl" text-center>
+    <thead>
+      <th>الإسم</th>
+      <th>رقم التليفون</th>
+      <th>إتصال</th>
+      <th>اخر تبرع</th>
+    </thead>
+    <tbody>
+      <tr [ngSwitch]="type" *ngFor="let p of fulldata; let i = index">
+        <td *ngSwitchCase="p.bldType.sign ? 'pos' : 'neg'" (click)="presentActionSheet(i, p.name, p.pn, p.bldType.sign, p.since)">{{p.name}}</td>
+        <td *ngSwitchCase="p.bldType.sign ? 'pos' : 'neg'" (click)="presentActionSheet(i, p.name, p.pn, p.bldType.sign, p.since)">{{p.pn}}</td>
+        <td *ngSwitchCase="p.bldType.sign ? 'pos' : 'neg'" icon-only>
+          <button ion-button (click)="callByNum(p.pn)" clear>
+            <ion-icon name="call"></ion-icon>
+          </button>
+        </td>
+        <td *ngSwitchCase="p.bldType.sign ? 'pos' : 'neg'" class="cannotv" [ngClass]="{'can': monthDiff(p.since, true) < 3}">
+          {{ monthDiff(p.since, false) }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</ion-content>

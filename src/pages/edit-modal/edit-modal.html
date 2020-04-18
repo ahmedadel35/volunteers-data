@@ -1,0 +1,31 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title text-center>تعديل</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+ <form (ngSubmit)="save()" dir="rtl">
+   <ion-item [ngClass]="{'err': name && !name.length}">
+     <ion-label floating>الإسم</ion-label>
+     <ion-input type="text" [(ngModel)]="name" name="username" value="{{name}}" required="true"></ion-input>
+   </ion-item>
+   <ion-item [ngClass]="{'err': !pn || (pn && pn.length != 11)}">
+     <ion-label floating>رقم الهاتف</ion-label>
+     <ion-input type="number" [(ngModel)]="pn" name="phonenumber" value="{{pn}}" required="true"></ion-input>
+   </ion-item>
+   <ion-item [ngClass]="{'err': !since}">
+     <ion-label>أخر مره تبرع</ion-label>
+     <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="since" max="{{today}}" name="lastVoluntering" placeholder="يوم/شهر/سنه"></ion-datetime>
+   </ion-item>
+   <ion-item>
+     <button ion-button block type="submit" [disabled]="!name.length || !pn.length" icon-start>
+        <ion-icon name="add"></ion-icon>
+        حفظ 
+      </button>
+   </ion-item>
+ </form>
+</ion-content>

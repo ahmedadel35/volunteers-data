@@ -1,0 +1,82 @@
+page-show {
+    th, tr, td{
+        padding: 0 1.2vh;
+    }
+    tr, td{
+        border-bottom: 1px solid rgb(29, 9, 99);
+        cursor: pointer;
+    }
+    thead{
+        background-color: #04424c;
+        color: #fff;
+    }
+    thead tr,
+    thead th{
+        padding-bottom: .5vh;
+        padding-top: .5vh;
+    }
+    tr:hover,
+    tr:active,
+    td:hover,
+    td:active{
+        background-color: #eee;
+        
+    }
+    th{
+        font-size: 2vh;
+    }
+    tr.odd{
+        background-color: rgb(132, 203, 250);
+    }
+    #table{
+        width: 100% !important;
+        height: auto;
+    }
+    ion-icon{
+        font-size: 1.5em;
+    }
+    ion-icon[name="call"]{
+        color: #03043a;
+    }
+    ion-segment-button{
+        color: #fff !important;
+        background-color: #488aff !important;
+    }
+    ion-searchbar *{
+        direction: rtl;
+        text-align: right;
+    }
+    td.cannotv{
+        border-right: 3px solid red;
+    }
+    td.can{
+        border-right: 3px solid green !important;
+    }
+    button.loop {
+        -webkit-animation: rotate 700ms infinite;
+        animation: rotate 700ms infinite;
+        color: #00d100;
+      }
+      
+      @-webkit-keyframes rotate {
+        0% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+        100% {
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+      }
+      
+      @keyframes rotate {
+        0% {
+          -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+        }
+        100% {
+          -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+        }
+      }
+}

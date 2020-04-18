@@ -1,0 +1,35 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title text-center>أضف متبرع جديد</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form (onSumbit)="saveNew()" dir="rtl">
+    <ion-item [ngClass]="{'err': !name}">
+      <ion-label floating>الإسم</ion-label>
+      <ion-input type="text" [(ngModel)]="name" name="uname" required="true"></ion-input>
+    </ion-item>
+    <ion-item [ngClass]="{'err': !pn || pn.length != 11}">
+      <ion-label floating>رقم الهاتف</ion-label>
+      <ion-input type="number" [(ngModel)]="pn" name="phonenumber" required="true"></ion-input>
+    </ion-item>
+    <ion-item [ngClass]="{'err': !bldInput || (bldInput && !checkBldInput(bldInput))}">
+      <ion-label floating>فصيله الدم</ion-label>
+      <ion-input id="bldType" type="text" [(ngModel)]="bldInput" name="bloodType" placeholder="A+  |  A-" required="true" minlength="2" maxlength="3"></ion-input>
+    </ion-item>
+    <ion-item [ngClass]="{'err': !lastVol}">
+      <ion-label>أخر مره تبرع</ion-label>{{today}}
+      <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="lastVol" min="2012"  max="{{today}}" name="lastVoluntering" placeholder="يوم/شهر/سنه"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <button ion-button color="secondary" (click)="saveNew()" [ngClass]="{'err': !name || !pn || pn.length!=11 || !bldInput || !checkBldInput(bldInput) || !lastVol}" full [disabled]="!name || !pn || pn.length!=11 || !bldInput || !checkBldInput(bldInput) || !lastVol" icon-start>
+          <ion-icon name="add"></ion-icon>
+          حفظ
+      </button>
+    </ion-item>
+  </form>
+</ion-content>

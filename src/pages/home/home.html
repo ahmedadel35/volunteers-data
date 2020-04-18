@@ -1,0 +1,31 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title text-center text-uppercase>داتا متبرعين</ion-title>
+    <ion-buttons end>
+      <button ion-button color="primary" (click)="openFile()" icon-only>
+        <ion-icon name="open"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding>
+  <div text-center>
+    <img id="logo" src="assets/imgs/home.jpg" />
+    <form padding (onSubmit)="doSearch()">
+        <ion-item dir="rtl" [ngClass]="{'err': checkBldType(bldType)}">
+            <ion-label floating>فصيله الدم</ion-label>
+            <ion-input id="searchinput" type="text" [(ngModel)]="bldType" name="bldType" placeholder="A B AB O" required="true" maxlength="2"></ion-input>
+        </ion-item>
+        <button ion-button full id="sub" type="submit" (click)="doSearch()" [ngClass]="{'err': checkBldType(bldType)}" [disabled]="checkBldType(bldType)" icon-start>
+            بحث 
+          <ion-icon name="search"></ion-icon>
+        </button>
+        <button ion-button full color="secondary" id="new" (click)="addNew()" icon-start>
+            أضف متبرع جديد 
+          <ion-icon name="add"></ion-icon>
+        </button>
+    </form>
+  </div>
+</ion-content>
